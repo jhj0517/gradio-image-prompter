@@ -121,9 +121,13 @@ class ImagePrompter(gradio.Image):
         im = super().preprocess(x.image)
         return {"image": im, "points": x.points}
 
-    def postprocess(self, y: PromptValue) -> PromptData | None:
+    def postprocess(self, y: PromptValue | str | _Image.Image | np.ndarray) -> PromptData | None:
         if y is None:
             return None
+
+        if isinstance(y, (str, _Image.Image, np.ndarray)):
+            return PromptData(image=super().postprocess(y), points=[])
+
         image, points = y.get("image", None), y.get("points", [])
         return PromptData(image=super().postprocess(image), points=points)
 
