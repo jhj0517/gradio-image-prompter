@@ -203,6 +203,7 @@
 <div class="wrap" bind:this={canvas_container}>
   <canvas
     bind:this={canvas}
+    on:contextmenu={e => e.preventDefault()}
     on:mousedown={handle_draw_start}
     on:mousemove={handle_draw_move}
     on:mouseout={handle_draw_move}
