@@ -46,7 +46,7 @@ class ImagePrompter(gradio.Image):
 
     def __init__(
         self,
-        value: str | _Image.Image | np.ndarray | None = None,
+        value: str | _Image.Image | np.ndarray | PromptValue | None = None,
         *,
         height: int | None = None,
         width: int | None = None,
